@@ -1,6 +1,7 @@
-const router = require('koa-router')();
+const Router = require('koa-router');
 const userInfoController = require('./../controllers/user-info');
 
+const router = new Router();
 const routers = router
   .get('/user/getUserInfo.json', userInfoController.getLoginUserInfo)
   .post('/user/signIn.json', userInfoController.signIn)

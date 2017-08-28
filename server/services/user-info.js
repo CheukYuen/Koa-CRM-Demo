@@ -50,7 +50,6 @@ const user = {
     let userInfo = {
       email: resultData.email,
       userName: resultData.name,
-      detailInfo: resultData.detail_info,
       createTime: resultData.create_time
     };
     return userInfo

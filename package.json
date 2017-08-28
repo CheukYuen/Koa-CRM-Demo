@@ -1,0 +1,23 @@
+{
+  "name": "Koa-CRM-Demo",
+  "version": "0.0.1",
+  "dependencies": {
+    "debug": "^3.0.1",
+    "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-logger": "^3.0.1",
+    "koa-mysql-session": "^0.0.2",
+    "koa-router": "^7.2.1",
+    "koa-send": "^4.1.0",
+    "koa-session-minimal": "^3.0.4",
+    "koa-static": "^4.0.1",
+    "koa-views": "^6.0.2",
+    "mysql": "^2.14.1",
+    "validator": "^8.1.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.0",
+    "power-assert": "^1.4.4",
+    "supertest": "^3.0.0"
+  }
+}

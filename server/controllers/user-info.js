@@ -30,15 +30,24 @@ module.exports = {
       result.code = 'FAIL_USER_NO_EXIST';
       result.message = userCode.FAIL_USER_NO_EXIST
     }
+    console.log('formData.source: ', formData.source);
     if (formData.source === 'form' && result.success === true) {
+      ctx.body = result;
+      // let session = ctx.session;
+      // session.isLogin = true;
+      // session.userName = userResult.name;
+      // session.userId = userResult.id;
+
+      // ctx.sessionHandler.regenerateId();
+      // ctx.redirect('/work')
+    } else {
+      ctx.body = result;
       let session = ctx.session;
       session.isLogin = true;
       session.userName = userResult.name;
       session.userId = userResult.id;
 
-      // ctx.redirect('/work')
-    } else {
-      ctx.body = result
+      // ctx.sessionHandler.regenerateId();
     }
   },
 
@@ -62,8 +71,8 @@ module.exports = {
       return
     }
 
-    let existOne = await userInfoService.getExistOne(formData)
-    console.log(existOne);
+    let existOne = await userInfoService.getExistOne(formData);
+    console.log('existOne: ',existOne);
 
     if (existOne) {
       if (existOne.name === formData.userName) {
@@ -72,7 +81,7 @@ module.exports = {
         return
       }
       if (existOne.email === formData.email) {
-        result.message = userCode.FAIL_EMAIL_IS_EXIST
+        result.message = userCode.FAIL_EMAIL_IS_EXIST;
         ctx.body = result;
         return
       }
@@ -87,7 +96,7 @@ module.exports = {
       level: 1,
     });
 
-    console.log(userResult);
+    console.log('userResult: ', userResult);
 
     if (userResult && userResult.insertId * 1 > 0) {
       result.success = true
@@ -113,7 +122,7 @@ module.exports = {
       success: false,
       message: '',
       data: null,
-    }
+    };
     if (isLogin === true && userName) {
       let userInfo = await userInfoService.getUserInfoByUserName(userName);
       if (userInfo) {

@@ -10,6 +10,12 @@ const pool = mysql.createPool({
 });
 
 
+/**
+ *
+ * @param {string} sql
+ * @param {Array} values
+ * @returns {Promise}
+ */
 let query = function (sql, values) {
   return new Promise((resolve, reject) => {
     pool.getConnection(function (err, connection) {
@@ -36,7 +42,7 @@ let createTable = function (sql) {
 
 let findDataById = function (table, id) {
   let _sql = "SELECT * FROM ?? WHERE id = ? ";
-  return query(_sql, [table, id, start, end])
+  return query(_sql, [table, id])
 };
 
 
@@ -65,8 +71,13 @@ let deleteDataById = function (table, id) {
 
 
 let select = function (table, keys) {
-  let _sql = "SELECT ?? FROM ?? ";
+  let _sql = "SELECT ?? FROM ??";
   return query(_sql, [keys, table])
+};
+
+let selectByName = function (table, keys, name) {
+  let _sql = "SELECT ?? FROM ?? WHERE name = ?";
+  return query(_sql, [keys, table, name])
 };
 
 let count = function (table) {
@@ -83,5 +94,6 @@ module.exports = {
   insertData,
   updateData,
   select,
+  selectByName,
   count,
 };
